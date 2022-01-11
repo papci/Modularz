@@ -1,0 +1,17 @@
+﻿@model int?
+
+@{
+    ViewBag.Title = "Add Posts";
+    Layout = "_LayoutAdmin";
+}
+<div id="form-editor">
+
+<input type="hidden" id="id-post" value="@(Model.GetValueOrDefault() > 0 ? $"/admin/get-post/{Model}" : null)"/>
+</div>
+
+
+@section scripts
+{
+    <script src="/js/dist/main.js"></script>
+
+}

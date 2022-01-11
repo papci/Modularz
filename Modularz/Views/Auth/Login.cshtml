@@ -1,0 +1,30 @@
+﻿@model LoginViewModel
+
+@{
+    ViewBag.Title = "Authentication";
+    Layout = "_LayoutAdmin";
+}
+
+
+<div class="p-10 card bg-base-200">
+    <h1 class="card-header">Auth plz</h1>
+    <form class="card-body" method="POST" asp-route="DoLogin">
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Username</span>
+            </label>
+            <input type="text" placeholder="username" class="input" name="userName" required="required">
+        </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Password</span>
+            </label>
+            <input type="password" placeholder="Password" class="input" name="password" required="required">
+        </div>
+       
+        <div class="form-control mt-5">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        @Html.AntiForgeryToken()
+    </form>
+</div>

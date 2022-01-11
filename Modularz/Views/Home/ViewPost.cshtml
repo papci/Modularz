@@ -1,0 +1,8 @@
+﻿@model Modularz.Data.EF.BlogPost
+
+<div class="blog-post mb-4 mt-4">
+    <h1 class="text-2xl border-b-indigo-500  border-b-4 mb-4 pb-2">@Model.Title</h1>
+    @Html.Raw(Model.Chapo)
+    @Html.Raw(Model.Text)
+</div>
+

@@ -1,0 +1,47 @@
+{
+  "name": "modularz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:prod": "npx tailwindcss -i ./React/input.css -o ./wwwroot/css/site.css --minify && npx webpack --mode=production",
+    "watch:css": "npx tailwindcss -i ./React/input.css -o ./wwwroot/css/site.css --watch",
+    "watch:react": "npx babel --watch ./React/ --out-dir ./wwwroot/js --presets react-app/prod",
+    "watch:webpack": "npx webpack --mode=development --watch --progress  "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "@babel/preset-react": "^7.16.7",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.6",
+    "postcss": "^8.4.5",
+    "postcss-import": "^14.0.2",
+    "postcss-loader": "^6.2.1",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.0.8",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^4.1.3",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tinymce/tinymce-react": "^3.13.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "cssnano": "^5.0.15",
+    "daisyui": "^1.21.0",
+    "postcss-nesting": "^10.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "tinymce": "^5.10.2",
+    "tinymce-react": "^1.3.2"
+  }
+}

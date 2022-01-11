@@ -1,0 +1,24 @@
+﻿@model  UnitSense.Repositories.Abstractions.FilteredDataSetResult<Modularz.Data.EF.BlogPost>
+@{
+    ViewData["Title"] = "Home Page";
+    var firstPost = Model.Results.FirstOrDefault();
+    
+}
+
+<div id="first-post" class="blog-post border-b-4 border-indigo-500 mt-4">
+    <h2 class="text-2xl mb-4">@firstPost.Title</h2>
+    @Html.Raw(firstPost.Chapo)
+    <div class="pb-4 pt-4 text-sm">
+         Publié le @firstPost.DatePublished | <a asp-route="ViewPost" asp-route-seoUrl="@firstPost.SeoUrl" class=" link-hover" >Lire la suite ...</a>
+    </div>
+</div>
+
+
+
+
+@section Styles
+{ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500&display=swap" rel="stylesheet"> 
+}

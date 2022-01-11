@@ -1,0 +1,26 @@
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./React/input.css ***!
+  \*************************************************************************************************************/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.area-full-h {
+    min-height: 500px;
+}
+
+.container {
+    min-height: 100vh;
+}
+.blog-post {
+    font-family: 'Gelasio', serif;
+}
+
+.blog-post h2 + p, .blog-post h1 + p {
+    font-weight: 500;
+}
+.blog-post p {
+    margin-bottom: 0.50rem;
+}
+
+

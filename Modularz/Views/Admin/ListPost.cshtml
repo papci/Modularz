@@ -1,0 +1,49 @@
+﻿@model UnitSense.Repositories.Abstractions.FilteredDataSetResult<Modularz.Data.EF.BlogPost>
+@{
+    ViewBag.Title = "All Posts";
+    Layout = "_LayoutAdmin";
+}
+<div class="p-10 card bg-base-200">
+    <h2 class="card-title">Blog Posts List</h2>
+    <div class="card-body">
+
+        @if (!Model.Results.Any())
+        {
+            <div> 😒 No Posts  😒</div>
+        }
+        else
+        {
+            <table class="table-auto w-full  table-zebra">
+                <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th>Title</th>
+                    <th>State</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var post in Model.Results)
+                {
+                    <tr>
+                        <td>
+                            @post.Id
+                        </td>
+                        <td>
+                            <a asp-route="EditPost" asp-route-id="@post.Id">  @post.Title</a>
+                        </td>
+                        <td>
+                            @post.State
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+
+
+    </div>
+    <div class="card-actions">
+        <a class="btn btn-primary" asp-route="AddPost">Add Post</a>
+
+    </div>
+</div>
