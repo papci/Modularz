@@ -7,7 +7,7 @@ class PostEditor extends React.Component {
 
     constructor(props) {
         super(props);
- 
+
         this.assignState(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,11 +20,19 @@ class PostEditor extends React.Component {
             [name]: value
         });
     }
-    handleSubmit(event) {
 
+    handleSubmit(event) {
+        event.preventDefault();
         const uri = this.state.id > 0 ? `/admin/edit-post/${this.state.id}` : '/admin/create-post';
         const data = this.state;
         data.state = +data.state;
+        if (data.dateCreated === '')
+            data.dateCreated = new Date();
+        if (data.dateUpdated === '')
+            data.dateUpdated = null
+        
+        if (data.datePublished === '')
+            data.datePublished = null;
         const myInit = {
             method: 'POST',
             mode: 'cors',
@@ -32,25 +40,42 @@ class PostEditor extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(this.state)
+            body: JSON.stringify(data)
         };
 
         fetch(uri, myInit)
-            .then(r => r.json())
             .then(r => {
-                this.state.displaySaveBox = 'block';
-                this.setState({
-                    displaySaveBox:  'block'
-                });
-                
-                const timer = setTimeout( e => {
-                    this.setState({
-                        displaySaveBox:  'none'
-                    });
-                }, 1600);
 
+                if (!r.ok) {
+                    return Promise.reject(r.status);
+                } else {
+                    return r.json()
+                }
             })
-        event.preventDefault();
+            .then(r => {
+                    this.state.displaySaveBox = 'block';
+                    this.setState({
+                        displaySaveBox: 'block'
+                    });
+
+                    const timer = setTimeout(e => {
+                        this.setState({
+                            displaySaveBox: 'none'
+                        });
+                    }, 1600);
+                },
+                e => {
+                    this.setState({
+                        displayErrorSave: 'block'
+                    });
+
+                    const timer = setTimeout(e => {
+                        this.setState({
+                            displayErrorSave: 'none'
+                        });
+                    }, 1600);
+                })
+
     }
 
     handleTmce(value, editor) {
@@ -110,7 +135,7 @@ class PostEditor extends React.Component {
                             />
 
                         </div>
-                        
+
                         <input type="hidden" name="id" value={this.state.id}/>
                         <input type="hidden" name="seoUrl" value={this.state.seoUrl}/>
                         <input type="hidden" name="dateUpdated" value={this.state.dateUpdated}/>
@@ -139,15 +164,24 @@ class PostEditor extends React.Component {
                         </div>
                         <div style={{display: this.state.displaySaveBox}} className="alert  alert-success mt-4 ">
                             <div className="flex-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                 className="w-6 h-6 mx-2 stroke-current">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-                            </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     className="w-6 h-6 mx-2 stroke-current">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
                                 <span>Save OK !</span>
                             </div>
                         </div>
-
+                        <div style={{display: this.state.displayErrorSave}} className="alert  alert-error mt-4 ">
+                            <div className="flex-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     className="w-6 h-6 mx-2 stroke-current">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                                <span>Save not ok :(</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -176,6 +210,7 @@ class PostEditor extends React.Component {
         }
 
         this.state.displaySaveBox = 'none';
+        this.state.displayErrorSave = 'none';
 
     }
 }

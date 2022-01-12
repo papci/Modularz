@@ -7,31 +7,39 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/app/app.css" asp-append-version="true"/>
 </head>
-<body class="bg-white">
-<div class="container  container-sm">
-    <h1 class="text-center">Welcome to Modularz</h1>
-    <p class="text-center mb-5">
-        <em > start installation with an admin account</em>
-    </p>
-    <form asp-route="StartInit" class="" method="POST">
-        <div class="grid grid-cols-2 gap-2 mb-2">
-            <label for="userName"> User Name : </label>
-            <input type="text" placeholder="User Name" name="userName"/>
+<body class="bg-dark">
+<div class="container w-full md:max-w-3xl mx-auto pt-20">
+    <div class="card bg-base-200 p-5">
+        <div class="card-header">
+            <h1 class="text-center">Welcome to Modularz</h1>
+            <p class="text-center">
+                <em > start installation with an admin account</em>
+            </p>
         </div>
-        <div class="grid grid-cols-2 gap-2 mb-2">
-            <label for="email"> Email : </label>
-            <input type="email" placeholder="Email" name="email"/>
-        </div>
-        <div class="grid grid-cols-2 gap-2 mb-2">
-            <label for="password"> Password : </label>
-            <input type="password" placeholder="Password" name="password"/>
-        </div>
-        <div class="text-center">
-            <button type="submit" class="border-solid border-2 border-light-blue-500">Let's gong</button>
-        </div>
-    </form>
+        <form asp-route="StartInit" class="card-body" method="POST">
+            <div class="form-control">
+                <label for="userName" class="label">
+                    <span class="label-text">User Name :</span>
+                </label>
+                <input type="text" placeholder="User Name" name="userName" class="input"/>
+            </div>
+            <div class="form-control">
+                <label for="email" class="label">
+                    <span class="label-text">Email : </span>
+                </label>
+                <input type="email" placeholder="Email" name="email" class="input"/>
+            </div>
+            <div class="form-control">
+                <label for="password" class="label"><span class="label-text"> Password :</span> </label>
+                <input type="password" placeholder="Password" name="password" class="input "/>
+            </div>
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-primary" >Let's gong</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

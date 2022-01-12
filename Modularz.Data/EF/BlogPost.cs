@@ -10,9 +10,10 @@ public class BlogPost
     [Key]
     public int Id { get; set; }
 
-    public DateTime DateCreated { get; set; }
-    public DateTime DatePublished { get; set; }
-    public DateTime DateUpdated { get; set; }
+    public DateTime? DateCreated { get; set; }
+    public DateTime? DatePublished { get; set; }
+    public DateTime? DateUpdated { get; set; }
+    
     public string MetaDescription { get; set; }
     public string Title { get; set; }
     public string SeoUrl { get; set; }
